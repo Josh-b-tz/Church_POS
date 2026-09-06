@@ -1,0 +1,56 @@
+### 1. Crear el Evento del Domingo
+POST http://localhost:8080/api/v1/eventos
+Content-Type: application/json
+
+{
+  "nombre": "Venta Pro-Construcción - Domingo 15",
+  "activo": true
+}
+
+### 2. Verificar que se guardó
+GET http://localhost:8080/api/v1/eventos
+
+### 3. Consultar el evento activo (Para la Tablet)
+GET http://localhost:8080/api/v1/eventos/activo
+
+### 4. Crear Producto: Tacos (Asociado al Evento 1)
+POST http://localhost:8080/api/v1/productos
+Content-Type: application/json
+
+{
+  "nombre": "Orden de Tacos (3u)",
+  "precio": 25.00,
+  "evento": { "id": 1 }
+}
+
+### 5. Crear Producto: Soda
+POST http://localhost:8080/api/v1/productos
+Content-Type: application/json
+
+{
+  "nombre": "Coca-Cola Bien Fría",
+  "precio": 10.00,
+  "evento": { "id": 1 }
+}
+
+### 6. Consultar el Menú del Evento 1
+GET http://localhost:8080/api/v1/productos/menu?eventoId=1
+
+### 7. Registrar Venta (2 Tacos + 1 Soda)
+POST http://localhost:8080/api/v1/ventas
+Content-Type: application/json
+
+{
+  "eventoId": 1,
+  "clienteId": null,
+  "productos": [
+    {
+      "productoId": 1,
+      "cantidad": 2
+    },
+    {
+      "productoId": 2,
+      "cantidad": 1
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+Reportes Excel/
+node_modules/
+dist/
+target/
+.idea/
+*.iml
+.aider*
